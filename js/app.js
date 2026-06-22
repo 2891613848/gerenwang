@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════
-   Vue 3 应用入口 v2 — Hash Router + 特效绑定
+   Vue 3 应用入口 — Hash Router + 特效绑定
    ═══════════════════════════════════════════════════════ */
 
 import { NavBar } from './components/nav-bar.js';
@@ -9,7 +9,6 @@ import { AboutPage } from './pages/about.js';
 import { ProjectsPage } from './pages/projects.js';
 import { BlogPage } from './pages/blog.js';
 import { ProductsPage } from './pages/products.js';
-import { refreshEffects } from './effects.js';
 
 const routes = {
   '/': HomePage,
@@ -20,8 +19,7 @@ const routes = {
 };
 
 function getRoute() {
-  const hash = window.location.hash.slice(1).replace(/\/+$/, '') || '/';
-  return routes[hash] ? hash : '/';
+  return window.location.hash.slice(1).replace(/\/+$/, '') || '/';
 }
 
 const app = Vue.createApp({
@@ -30,34 +28,43 @@ const app = Vue.createApp({
   },
   computed: {
     currentComponent() {
-      return routes[this.currentRoute] || routes['/'];
+      return routes[this.currentRoute] || HomePage;
     }
   },
   methods: {
     onHashChange() {
       this.currentRoute = getRoute();
+      this.loadEffects();
+    },
+    loadEffects() {
+      setTimeout(() => {
+        import('./effects.js').then(m => {
+          if (m.refreshEffects) m.refreshEffects();
+        }).catch(() => {});
+      }, 200);
     }
   },
   mounted() {
     window.addEventListener('hashchange', this.onHashChange);
-    // 初次加载特效
-    this.$nextTick(() => {
-      // 动态导入 effects.js 已在 index.html 加载，直接调用
-      import('./effects.js').then(m => m.refreshEffects());
-    });
-  },
-  beforeUnmount() {
-    window.removeEventListener('hashchange', this.onHashChange);
+    this.loadEffects();
   }
 });
 
 app.component('nav-bar', NavBar);
 app.component('site-footer', SiteFooter);
-app.mount('#app');
 
-// 返回顶部
+try {
+  app.mount('#app');
+} catch(e) {
+  console.error('Vue mount error:', e);
+  document.getElementById('app').innerHTML = '<div style="text-align:center;padding:80px;font-size:18px;color:#999;">⚠️ 加载失败，请刷新页面</div>';
+}
+
 window.addEventListener('scroll', () => {
   const btn = document.getElementById('back-to-top');
   if (btn) btn.classList.toggle('visible', window.scrollY > 400);
 });
-window.scrollToTop = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); };
+
+window.scrollToTop = function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
