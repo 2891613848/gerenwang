@@ -3,21 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="小熊的个人网站 — 用好奇心建造，用代码创造">
 <title>小熊 · 个人网站</title>
 <link rel="stylesheet" href="css/main.css">
+<style>
+.section-page { display: none; padding-top: 80px; }
+.section-page.active { display: block; animation: fadeIn .4s ease; }
+</style>
 </head>
 <body>
 
-<div id="app">
-  <nav-bar :current="currentRoute"></nav-bar>
-  <component :is="currentComponent"></component>
-  <site-footer></site-footer>
-  <button id="back-to-top" class="back-to-top" onclick="scrollToTop()" title="返回顶部">↑</button>
+<nav class="nav-bar" id="topNav">
+  <div class="nav-inner">
+    <a href="javascript:void(0)" class="nav-logo" onclick="showPage('home')">
+      <span class="logo-dot"></span><span class="logo-text">小熊</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="javascript:void(0)" onclick="showPage('home')" class="active" data-page="home">首页</a>
+      <a href="javascript:void(0)" onclick="showPage('about')" data-page="about">关于</a>
+      <a href="javascript:void(0)" onclick="showPage('projects')" data-page="projects">项目</a>
+      <a href="javascript:void(0)" onclick="showPage('blog')" data-page="blog">博客</a>
+      <a href="javascript:void(0)" onclick="showPage('products')" data-page="products">产品</a>
+    </div>
+  </div>
+</nav>
+
+<div id="page-home" class="section-page active">
+  <section class="hero">
+    <canvas id="heroCanvas" class="hero-canvas"></canvas>
+    <div class="hero-float" style="top:15%;left:8%;font-size:36px">✨</div>
+    <div class="hero-float" style="top:20%;right:10%;font-size:24px">💡</div>
+    <div class="hero-float" style="bottom:25%;left:12%;font-size:30px">🚀</div>
+    <div class="hero-float" style="bottom:20%;right:8%;font-size:22px">🎯</div>
+    <div class="hero-float" style="top:45%;left:4%;font-size:20px">🌟</div>
+    <div class="hero-float" style="top:50%;right:5%;font-size:26px">💭</div>
+    <div class="hero-content">
+      <div class="hero-avatar">🐻</div>
+      <div class="hero-greeting">Hello, I'm</div>
+      <h1 class="hero-name">小熊</h1>
+      <div class="hero-tagline-wrap">
+        <span class="hero-tagline" id="heroTypewriter"></span>
+        <span class="hero-cursor"></span>
+      </div>
+      <div class="hero-tags">
+        <span class="tag tag-purple">全栈开发</span>
+        <span class="tag tag-outline">产品设计</span>
+        <span class="tag tag-outline">教育科技</span>
+      </div>
+      <div class="hero-actions">
+        <a href="javascript:void(0)" class="btn btn-primary" onclick="showPage('about')">了解更多</a>
+        <a href="javascript:void(0)" class="btn btn-outline" onclick="showPage('projects')">查看项目</a>
+      </div>
+    </div>
+  </section>
+  <section class="section"><div class="container">
+    <h2 class="section-title">探索更多</h2><p class="section-subtitle">这里还有一些你可能感兴趣的内容</p>
+    <div class="nav-grid">
+      <a href="javascript:void(0)" class="card" onclick="showPage('about')"><div class="nav-grid-icon">👤</div><div class="nav-grid-title">关于我</div><div class="nav-grid-desc">了解我的背景、技能和做事方式</div></a>
+      <a href="javascript:void(0)" class="card" onclick="showPage('projects')"><div class="nav-grid-icon">💼</div><div class="nav-grid-title">项目作品</div><div class="nav-grid-desc">看看我做过的东西和技术栈</div></a>
+      <a href="javascript:void(0)" class="card" onclick="showPage('blog')"><div class="nav-grid-icon">✍️</div><div class="nav-grid-title">博客</div><div class="nav-grid-desc">阅读我的技术文章和思考随笔</div></a>
+      <a href="javascript:void(0)" class="card" onclick="showPage('products')"><div class="nav-grid-icon">🚀</div><div class="nav-grid-title">已上线产品</div><div class="nav-grid-desc">那些真正在运行的产品和服务</div></a>
+    </div>
+  </div></section>
 </div>
 
-<script src="js/vue.global.prod.js"></script>
-<script type="module" src="js/app.js"></script>
+<div id="page-about" class="section-page"><div class="container"><div class="about-grid" style="padding-top:40px">
+  <aside class="about-sidebar">
+    <div class="about-avatar-wrap"><svg viewBox="0 0 140 140" width="130" height="130" xmlns="http://www.w3.org/2000/svg"><circle cx="70" cy="46" r="35" fill="#FFDBB5"/><ellipse cx="30" cy="102" rx="8" ry="17" fill="#FFDBB5" transform="rotate(12 30 102)"/><ellipse cx="110" cy="102" rx="8" ry="17" fill="#FFDBB5" transform="rotate(-12 110 102)"/><path d="M44 79 Q40 77 40 81 L40 126 Q40 132 46 132 L94 132 Q100 132 100 126 L100 81 Q100 77 96 79 Q88 85 70 85 Q52 85 44 79 Z" fill="#6C5CE7"/><path d="M58 79 Q70 88 82 79" stroke="#8B7DFF" stroke-width="2.5" fill="none" opacity=".4"/><path d="M36 46 Q34 14 70 12 Q106 14 104 46" fill="#4A3728"/><circle cx="55" cy="44" r="5" fill="#3D2B1F"/><circle cx="85" cy="44" r="5" fill="#3D2B1F"/><circle cx="57" cy="42" r="1.5" fill="#fff"/><circle cx="87" cy="42" r="1.5" fill="#fff"/><ellipse cx="44" cy="53" rx="8" ry="5" fill="#FFB8B8" opacity=".5"/><ellipse cx="96" cy="53" rx="8" ry="5" fill="#FFB8B8" opacity=".5"/><path d="M65 58 Q70 64 75 58" stroke="#3D2B1F" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+    <h2 class="about-name">小熊</h2><p class="about-role">全栈开发者 · 产品建造者</p>
+  </aside>
+  <div class="about-main">
+    <div class="card card-accent"><h3>👋 关于我</h3><p style="font-size:15px;color:var(--c-text-secondary);line-height:2">你好！我是小熊，一个热爱用代码创造东西的人。我相信好的产品是在不断建造、测试、推翻、重建的过程中长出来的。<br><br>目前的兴趣集中在教育科技和工具型产品，喜欢思考怎么让复杂的事情变得简单。UBTI 就是我践行这个理念的产物。</p></div>
+    <div class="card"><h3>🛠 技能栈</h3><div class="skill-cloud"><span class="skill-tag">JavaScript / TypeScript</span><span class="skill-tag">Vue 3</span><span class="skill-tag">React</span><span class="skill-tag">Node.js</span><span class="skill-tag">Python</span><span class="skill-tag">HTML / CSS</span><span class="skill-tag">SVG</span><span class="skill-tag">Git</span><span class="skill-tag">Figma</span><span class="skill-tag">产品设计</span></div></div>
+  </div>
+</div></div></div>
 
+<div id="page-projects" class="section-page"><div class="container">
+  <h2 class="section-title">项目作品集</h2><p class="section-subtitle">每个项目都解决了一个真实的问题</p>
+  <div class="projects-grid">
+    <div class="card project-card"><div class="project-icon">🎯</div><div class="project-title">UBTI · 大学适配类型测试</div><div class="project-desc">四维度 × 四十八题 × 十六种类型，帮助高中生找到最适合的大学和专业方向。</div><div class="project-meta"><div class="project-tags"><span class="tag tag-purple">全栈</span><span class="tag tag-purple">SVG</span></div><a href="https://ubti.top" target="_blank" class="btn btn-ghost" style="padding:6px 16px;font-size:13px">查看 →</a></div></div>
+    <div class="card project-card"><div class="project-icon">🏠</div><div class="project-title">个人网站</div><div class="project-desc">你现在看到的这个网站。粒子动画 + 打字机效果，纯静态。</div><div class="project-meta"><div class="project-tags"><span class="tag tag-purple">Canvas</span><span class="tag tag-purple">Web</span></div></div></div>
+  </div>
+</div></div>
+
+<div id="page-blog" class="section-page"><div class="container">
+  <h2 class="section-title">博客</h2><p class="section-subtitle">技术文章和思考随笔</p>
+  <div class="blog-list">
+    <div class="blog-item"><div class="blog-date">2026-06-21</div><div class="blog-title">你好，世界！这是我的个人网站</div><div class="blog-excerpt">花了很长时间思考要搭建什么样的个人网站，最后决定从最核心的项目开始。</div></div>
+  </div>
+</div></div>
+
+<div id="page-products" class="section-page"><div class="container">
+  <h2 class="section-title">已上线产品</h2><p class="section-subtitle">真正在运行、在服务用户的产品</p>
+  <div class="card" style="margin-bottom:20px"><div class="product-card"><div class="product-icon-wrap">🎯</div><div class="product-info"><h3 class="product-name">UBTI · 大学适配类型测试</h3><span class="product-status live">已上线</span><p class="product-desc">帮助高中生通过性格与偏好分析找到最适合大学的测试工具。</p><a href="https://ubti.top" target="_blank" class="btn btn-primary" style="padding:8px 22px;font-size:14px">访问 →</a></div></div></div>
+</div></div>
+
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="javascript:void(0)" onclick="showPage('home')">首页</a>
+    <a href="javascript:void(0)" onclick="showPage('about')">关于</a>
+    <a href="javascript:void(0)" onclick="showPage('projects')">项目</a>
+    <a href="javascript:void(0)" onclick="showPage('blog')">博客</a>
+    <a href="javascript:void(0)" onclick="showPage('products')">产品</a>
+  </div>
+  <p class="footer-copy">&copy; 2026 小熊 · 用好奇心建造</p>
+</footer>
+<button id="back-to-top" class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="返回顶部">↑</button>
+
+<script src="app.js"></script>
 </body>
 </html>
