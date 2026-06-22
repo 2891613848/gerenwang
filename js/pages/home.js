@@ -1,8 +1,108 @@
 /* ═══════════════════════════════════════════════════════
-   首页 v2 — 粒子 Hero + 打字机 + UBTI 测试
+   首页 v3 — Ghibli 头像 + 粒子 + 打字机 + UBTI
    ═══════════════════════════════════════════════════════ */
 
-// ── SVG 卡通角色（保持原版）──
+// ── Ghibli 风格头像 SVG（吉卜力 · 柔和粉彩 · 赛璐珞）──
+function ghibliAvatar() {
+  return `<svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="bgGrad" cx="50%" cy="40%" r="50%">
+        <stop offset="0%" stop-color="#FFF8F0"/>
+        <stop offset="100%" stop-color="#F0E6FF"/>
+      </radialGradient>
+      <radialGradient id="skinGrad" cx="50%" cy="40%" r="50%">
+        <stop offset="0%" stop-color="#FFF0E8"/>
+        <stop offset="100%" stop-color="#FDDCC8"/>
+      </radialGradient>
+      <radialGradient id="hairGrad" cx="50%" cy="30%" r="55%">
+        <stop offset="0%" stop-color="#6B4226"/>
+        <stop offset="100%" stop-color="#3D2214"/>
+      </radialGradient>
+      <radialGradient id="cheekL" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FFB8B8" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="#FFB8B8" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="cheekR" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FFB8B8" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="#FFB8B8" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#8B9DC3"/>
+        <stop offset="40%" stop-color="#A0B4D8"/>
+        <stop offset="100%" stop-color="#7B8FB5"/>
+      </linearGradient>
+      <filter id="softShadow">
+        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#4A3C6E" flood-opacity="0.12"/>
+      </filter>
+    </defs>
+    <!-- 背景光晕 -->
+    <circle cx="100" cy="90" r="90" fill="url(#bgGrad)" filter="url(#softShadow)"/>
+    <!-- 领口 -->
+    <path d="M75 130 Q100 142 125 130 Q130 132 132 140 L132 180 Q132 188 120 192 L80 192 Q68 188 68 180 L68 140 Q70 132 75 130 Z" fill="url(#bodyGrad)"/>
+    <path d="M78 130 Q100 146 122 130" stroke="#6B7A9A" stroke-width="1.8" fill="none" opacity="0.4" stroke-linecap="round"/>
+    <!-- 脖子 -->
+    <path d="M85 118 Q100 128 115 118 L112 132 Q100 138 88 132 Z" fill="url(#skinGrad)"/>
+    <!-- 脸部 -->
+    <ellipse cx="100" cy="82" rx="42" ry="48" fill="url(#skinGrad)"/>
+    <!-- 耳朵 -->
+    <ellipse cx="56" cy="82" rx="8" ry="13" fill="url(#skinGrad)"/>
+    <ellipse cx="144" cy="82" rx="8" ry="13" fill="url(#skinGrad)"/>
+    <!-- 头发后层 -->
+    <ellipse cx="62" cy="110" rx="16" ry="30" fill="url(#hairGrad)"/>
+    <ellipse cx="138" cy="110" rx="16" ry="30" fill="url(#hairGrad)"/>
+    <!-- 头发前层 Ghibli 柔软风格 -->
+    <path d="M58 82 Q56 52 68 36 Q78 22 100 18 Q122 22 132 36 Q144 52 142 82
+      Q142 48 132 40 Q122 32 100 30 Q78 32 68 40 Q58 48 58 82 Z" fill="url(#hairGrad)"/>
+    <path d="M58 82 Q56 44 70 30 Q80 18 100 14 Q120 18 130 30 Q144 44 142 82
+      Q144 56 132 44 Q118 32 100 28 Q82 32 68 44 Q56 56 58 82 Z" fill="url(#hairGrad)"/>
+    <!-- 刘海 -->
+    <path d="M56 80 Q54 38 72 28 Q84 20 100 18 Q116 20 128 28 Q146 38 144 80
+      Q140 56 128 46 Q116 36 100 34 Q84 36 72 46 Q60 56 56 80 Z" fill="url(#hairGrad)"/>
+    <path d="M58 76 Q60 48 74 36 Q86 28 100 26 Q114 28 126 36 Q140 48 142 76
+      Q136 54 124 44 Q112 36 100 34 Q88 36 76 44 Q64 54 58 76 Z" fill="#7B4A2E"/>
+    <!-- 侧发 -->
+    <path d="M56 80 Q52 90 54 108 Q56 118 62 124 Q58 112 58 98 Q58 86 56 80 Z" fill="url(#hairGrad)"/>
+    <path d="M144 80 Q148 90 146 108 Q144 118 138 124 Q142 112 142 98 Q142 86 144 80 Z" fill="url(#hairGrad)"/>
+    <!-- 眉毛 Ghibli 柔 -->
+    <path d="M72 68 Q78 64 86 68" stroke="#3D2214" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M114 68 Q122 64 128 68" stroke="#3D2214" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- 眼睛 Ghibli 大眼 -->
+    <g>
+      <ellipse cx="79" cy="78" rx="13" ry="16" fill="#2C1810"/>
+      <ellipse cx="79" cy="78" rx="12" ry="15" fill="#1A0E08"/>
+      <circle cx="75" cy="72" r="5.5" fill="#fff" opacity="0.95"/>
+      <circle cx="82" cy="76" r="3" fill="#fff" opacity="0.85"/>
+      <circle cx="77" cy="82" r="1.5" fill="#fff" opacity="0.6"/>
+    </g>
+    <g>
+      <ellipse cx="121" cy="78" rx="13" ry="16" fill="#2C1810"/>
+      <ellipse cx="121" cy="78" rx="12" ry="15" fill="#1A0E08"/>
+      <circle cx="117" cy="72" r="5.5" fill="#fff" opacity="0.95"/>
+      <circle cx="124" cy="76" r="3" fill="#fff" opacity="0.85"/>
+      <circle cx="119" cy="82" r="1.5" fill="#fff" opacity="0.6"/>
+    </g>
+    <!-- 睫毛 -->
+    <path d="M66 76 Q70 70 76 68" stroke="#1A0E08" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M124 68 Q130 70 134 76" stroke="#1A0E08" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <!-- 腮红 -->
+    <ellipse cx="62" cy="92" rx="12" ry="8" fill="url(#cheekL)"/>
+    <ellipse cx="138" cy="92" rx="12" ry="8" fill="url(#cheekR)"/>
+    <!-- 鼻子 -->
+    <path d="M97 86 Q100 90 103 86" stroke="#E8B8A0" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    <!-- 嘴巴 Ghibli 温柔微笑 -->
+    <path d="M92 102 Q96 108 100 107 Q104 108 108 102" stroke="#D4786A" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <!-- 高光 -->
+    <circle cx="65" cy="54" r="3" fill="#fff" opacity="0.25"/>
+    <circle cx="135" cy="56" r="2" fill="#fff" opacity="0.2"/>
+    <!-- 星光 -->
+    <circle cx="165" cy="35" r="2.5" fill="#FFEAA7" opacity="0.8"/>
+    <circle cx="38" cy="40" r="1.8" fill="#FFEAA7" opacity="0.6"/>
+    <circle cx="155" cy="50" r="1.5" fill="#FFEAA7" opacity="0.5"/>
+    <circle cx="48" cy="30" r="2" fill="#FFEAA7" opacity="0.55"/>
+  </svg>`;
+}
+
+// ── UBTI 卡通角色（保留给测试结果用）──
 function makeCharacter(opt){
   const bc=opt.bodyColor,bcl=opt.bodyColorLight||bc,sk=opt.skin||'#FFE4D0';
   const hc=opt.hairColor||'#4A3728',ht=opt.hairType||'short';
@@ -56,7 +156,6 @@ function makeCharacter(opt){
   function accSVG(acc){
     const a={
       'glasses':'<circle cx="53" cy="44" r="10" fill="none" stroke="#555" stroke-width="2.2"/><circle cx="87" cy="44" r="10" fill="none" stroke="#555" stroke-width="2.2"/><line x1="63" y1="44" x2="77" y2="44" stroke="#555" stroke-width="2"/>',
-      'goggles':'<circle cx="51" cy="36" r="11" fill="rgba(255,255,255,.55)" stroke="#666" stroke-width="2"/><circle cx="89" cy="36" r="11" fill="rgba(255,255,255,.55)" stroke="#666" stroke-width="2"/><rect x="62" y="34" width="16" height="4" rx="1" fill="#666"/>',
       'star':'<polygon points="104,20 106,27 113,28 108,33 110,40 104,37 98,40 100,33 95,28 102,27" fill="#FFD93D" stroke="#E8B800" stroke-width=".7"/>',
       'heart':'<path d="M104 92 Q104 85 109 85 Q114 85 114 90 Q114 96 109 103 Q104 96 104 92 Z" fill="#FF7675"/>',
       'book':'<rect x="22" y="76" width="24" height="17" rx="2.5" fill="#FFF" stroke="#C0C0C0" stroke-width="1.2"/><line x1="34" y1="76" x2="34" y2="93" stroke="#C0C0C0" stroke-width=".8"/><line x1="25" y1="81" x2="32" y2="81" stroke="#DDD" stroke-width=".7"/><line x1="25" y1="85" x2="32" y2="85" stroke="#DDD" stroke-width=".7"/>',
@@ -67,10 +166,7 @@ function makeCharacter(opt){
       'gear':'<circle cx="26" cy="62" r="7.5" fill="none" stroke="#fff" stroke-width="2.2" opacity=".75"/><circle cx="26" cy="62" r="2.5" fill="#fff" opacity=".75"/>',
       'rocket':'<path d="M102 72 L106 56 L102 42 Q98 34 96 42 Q94 50 94 56 Q94 64 96 72 Z" fill="#fff" opacity=".85"/><path d="M96 42 L94 28 L100 20 L106 28 L104 42" fill="#FF7675" opacity=".85"/>',
       'globe':'<circle cx="26" cy="64" r="10" fill="none" stroke="#fff" stroke-width="2" opacity=".75"/><ellipse cx="26" cy="64" rx="4.5" ry="10" fill="none" stroke="#fff" stroke-width=".8" opacity=".5"/><line x1="17" y1="64" x2="35" y2="64" stroke="#fff" stroke-width=".8" opacity=".5"/>',
-      'stethoscope':'<path d="M22 84 L22 68 Q22 58 30 58 Q38 58 38 64 Q38 72 30 68" fill="none" stroke="#fff" stroke-width="2.2" opacity=".75" stroke-linecap="round"/><circle cx="30" cy="63" r="4" fill="none" stroke="#fff" stroke-width="1.8" opacity=".75"/>',
       'palette':'<ellipse cx="26" cy="72" rx="13" ry="8.5" fill="#fff" opacity=".75" transform="rotate(-15 26 72)"/><circle cx="20" cy="68" r="2.2" fill="#FF7675"/><circle cx="28" cy="66" r="2.2" fill="#74B9FF"/><circle cx="24" cy="75" r="2" fill="#FFEAA7"/>',
-      'megaphone':'<path d="M90 90 L78 82 L56 82 L56 98 L78 98 L90 90 Z" fill="#fff" opacity=".75"/><path d="M90 90 L99 82 L99 98 Z" fill="#fff" opacity=".55"/>',
-      'wrench':'<rect x="18" y="82" width="26" height="5" rx="2" fill="#fff" opacity=".75" transform="rotate(-30 31 84)"/><circle cx="18" cy="85" r="6" fill="none" stroke="#fff" stroke-width="2.2" opacity=".75"/>',
       'none':'',
     };
     return a[acc]||'';
@@ -84,7 +180,7 @@ function makeCharacter(opt){
   return '<svg viewBox="0 0 140 140" width="150" height="150" xmlns="http://www.w3.org/2000/svg"><circle cx="70" cy="70" r="60" fill="'+bcl+'" opacity=".08"/>'+hairBack()+arms+body+collar+head+hairFront()+eyebrows()+eyes()+blush()+mouth()+accSVG(acc)+(opt.sparkle?'<circle cx="105" cy="22" r="2.2" fill="#FFEAA7" opacity=".85"/><circle cx="34" cy="20" r="1.5" fill="#FFEAA7" opacity=".7"/><circle cx="100" cy="36" r="1.8" fill="#FFEAA7" opacity=".65"/>':'')+'</svg>';
 }
 
-// ── 题库 & 类型 & 维度 ──
+// ── 题库 & 类型 & 维度（保持不变）──
 const QUESTIONS = [
   {dim:"U",text:"你更享受哪种学习过程？",optA:"为了理解一个理论，可以花很长时间反复琢磨",optB:"学到能立刻用起来的技能，最有成就感"},
   {dim:"U",text:"你对大学四年的核心期待是什么？",optA:"深入理解某个学科的本质和思维方式",optB:"获得有竞争力的职业能力和行业认知"},
@@ -156,52 +252,35 @@ const TYPE_CONFIG = {
 };
 
 const dimMeta = {
-  U:{name:"使命取向",chipA:"R",chipB:"V",labelA:"学术探究",labelB:"职业应用",descA:"你的核心驱动力来自对学科本身的好奇。你上大学是为了深入理解知识的本质，建立一套看世界的思维框架。读研读博对你来说是自然延伸，而非外界施加的要求。",descB:"你的核心驱动力来自对职业目标的追求。你上大学是为了获得有竞争力的职业能力，找到清晰的职业方向。你更看重知识能解决什么实际问题，而非停留在理论层面。"},
-  B:{name:"学科边界",chipA:"D",chipB:"W",labelA:"纵深专精",labelB:"跨界广博",descA:"你的知识偏好是不断加深而非不断扩展。你享受在一个领域里越挖越深的过程，相信真正的竞争力来自不可替代的深度。专注一个方向做到极致，让你感到踏实和充实。",descB:"你的知识偏好是广泛连接而非单点深钻。你对多个领域保持开放和好奇，相信最有价值的东西往往出现在学科交叉处。跨领域思考对你来说不是分心，而是养分。"},
-  T:{name:"认知风格",chipA:"A",chipB:"C",labelA:"抽象思辨",labelB:"具象实操",descA:"你处理知识的方式偏向概念推理和逻辑推演。你享受在头脑中构建理论框架，喜欢追问「为什么」。论述、分析、思辨——这些是你的舒适区，也是你最能发挥所长的地方。",descB:"你处理知识的方式偏向动手操作和实践验证。你不满足于「知道」，必须「做到」才算真正理解。实验、制作、项目实践——这些是你最有效的学习路径。"},
-  I:{name:"制度偏好",chipA:"S",chipB:"F",labelA:"有序规划",labelB:"自由探索",descA:"你对大学环境的需求偏向清晰的结构和明确的路径。有体系的课程、明确的评价标准、可预期的进度——这些让你安心，也让你高效。你在有序的框架内最能发挥自己的潜力。",descB:"你对大学环境的需求偏向弹性和自主空间。你需要选课的自由、探索的余地、不被过度规划的权利。在开放的环境中，你最能找到自己的节奏和方向。"},
+  U:{name:"使命取向",chipA:"R",chipB:"V",labelA:"学术探究",labelB:"职业应用",descA:"你的核心驱动力来自对学科本身的好奇。",descB:"你的核心驱动力来自对职业目标的追求。"},
+  B:{name:"学科边界",chipA:"D",chipB:"W",labelA:"纵深专精",labelB:"跨界广博",descA:"你的知识偏好是不断加深而非不断扩展。",descB:"你的知识偏好是广泛连接而非单点深钻。"},
+  T:{name:"认知风格",chipA:"A",chipB:"C",labelA:"抽象思辨",labelB:"具象实操",descA:"你处理知识的方式偏向概念推理和逻辑推演。",descB:"你处理知识的方式偏向动手操作和实践验证。"},
+  I:{name:"制度偏好",chipA:"S",chipB:"F",labelA:"有序规划",labelB:"自由探索",descA:"你对大学环境的需求偏向清晰的结构和明确的路径。",descB:"你对大学环境的需求偏向弹性和自主空间。"},
 };
 
 function shuffleArr(a){const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]]}return r}
 
-// ── 首页 Vue 组件 v2 ──
+// ── 首页 Vue 组件 v3 ──
 export const HomePage = {
   template: `
   <div>
-    <!-- ===== Hero v2：粒子背景 + 打字机 ===== -->
     <section class="hero">
       <canvas id="hero-canvas" class="hero-canvas"></canvas>
-      <!-- 浮动装饰 -->
-      <div class="hero-float">✨</div>
-      <div class="hero-float">💡</div>
-      <div class="hero-float">🚀</div>
-      <div class="hero-float">🎯</div>
-      <div class="hero-float">🌟</div>
-      <div class="hero-float">💭</div>
-
+      <div class="hero-float">✨</div><div class="hero-float">💡</div><div class="hero-float">🚀</div><div class="hero-float">🎯</div><div class="hero-float">🌟</div><div class="hero-float">💭</div>
       <div class="hero-content">
-        <div class="hero-avatar">🐻</div>
+        <div class="hero-avatar ghibli-avatar" v-html="ghibliAvatar()"></div>
         <div class="hero-greeting">Hello, I'm</div>
         <h1 class="hero-name">小熊</h1>
         <div class="hero-tagline-wrap">
-          <span class="hero-tagline" id="hero-typewriter"
-            data-texts='["用好奇心建造，用代码创造","让复杂的事情变得简单","帮助人们做出更好的选择","相信好的产品是长出来的"]'>
-          </span>
+          <span class="hero-tagline" id="hero-typewriter" data-texts='["用好奇心建造，用代码创造","让复杂的事情变得简单","帮助人们做出更好的选择","相信好的产品是长出来的"]'></span>
           <span class="hero-cursor"></span>
         </div>
-        <div class="hero-tags">
-          <span class="tag tag-purple">全栈开发</span>
-          <span class="tag tag-outline">产品设计</span>
-          <span class="tag tag-outline">教育科技</span>
-        </div>
-        <div class="hero-actions">
-          <a href="#/about" class="btn btn-primary">了解更多</a>
-          <a href="#/projects" class="btn btn-outline">查看项目</a>
-        </div>
+        <div class="hero-tags"><span class="tag tag-purple">全栈开发</span><span class="tag tag-outline">产品设计</span><span class="tag tag-outline">教育科技</span></div>
+        <div class="hero-actions"><a href="#/about" class="btn btn-primary">了解更多</a><a href="#/projects" class="btn btn-outline">查看项目</a></div>
       </div>
     </section>
 
-    <!-- ===== UBTI 测试区 ===== -->
+    <!-- UBTI 测试区（不变） -->
     <section class="section reveal reveal-up" id="ubti-area">
       <div class="container">
         <div v-if="quizScreen==='intro'" class="ubti-section">
@@ -215,25 +294,14 @@ export const HomePage = {
             <div class="ubti-dim-item"><div class="ubti-dim-icon">🧠</div><div class="ubti-dim-name">认知风格</div><div class="ubti-dim-range">抽象思辨 ↔ 具象实操</div></div>
             <div class="ubti-dim-item"><div class="ubti-dim-icon">🏛</div><div class="ubti-dim-name">制度偏好</div><div class="ubti-dim-range">有序规划 ↔ 自由探索</div></div>
           </div>
-          <div class="ubti-steps">
-            <div class="ubti-step"><span class="ubti-step-num">1</span>回答 48 道选择题</div>
-            <div class="ubti-step-arrow">→</div>
-            <div class="ubti-step"><span class="ubti-step-num">2</span>四个维度分析</div>
-            <div class="ubti-step-arrow">→</div>
-            <div class="ubti-step"><span class="ubti-step-num">3</span>匹配你的大学类型</div>
-          </div>
+          <div class="ubti-steps"><div class="ubti-step"><span class="ubti-step-num">1</span>回答 48 道选择题</div><div class="ubti-step-arrow">→</div><div class="ubti-step"><span class="ubti-step-num">2</span>四个维度分析</div><div class="ubti-step-arrow">→</div><div class="ubti-step"><span class="ubti-step-num">3</span>匹配你的大学类型</div></div>
           <div class="ubti-meta"><span>📋 48 题</span><span>⏱ 约 8 分钟</span><span>🔒 数据留在本地</span></div>
           <button class="ubti-btn-start" @click="startQuiz">开 始 测 试</button>
         </div>
-
         <div v-if="quizScreen==='quiz'" class="ubti-quiz-wrap">
-          <div class="ubti-progress-wrap">
-            <div class="ubti-progress-bar"><div class="ubti-progress-fill" :style="{width: progressPct+'%'}"></div></div>
-            <div class="ubti-progress-text"><span>第 {{ currentQ + 1 }} / {{ shuffled.length }} 题</span></div>
-          </div>
+          <div class="ubti-progress-wrap"><div class="ubti-progress-bar"><div class="ubti-progress-fill" :style="{width: progressPct+'%'}"></div></div><div class="ubti-progress-text"><span>第 {{ currentQ + 1 }} / {{ shuffled.length }} 题</span></div></div>
           <div class="ubti-q-card" v-if="currentQuestion">
-            <div class="ubti-dim-chip">{{ dimMeta[currentQuestion.dim].name }}</div>
-            <div class="ubti-q-text">{{ currentQuestion.text }}</div>
+            <div class="ubti-dim-chip">{{ dimMeta[currentQuestion.dim].name }}</div><div class="ubti-q-text">{{ currentQuestion.text }}</div>
             <div class="ubti-scale-wrap">
               <div class="ubti-scale-labels"><span>{{ leftLabel }}</span><span>{{ rightLabel }}</span></div>
               <div class="ubti-scale-spectrum">
@@ -244,81 +312,24 @@ export const HomePage = {
                 <button class="ubti-scale-btn" :class="{sel:choices[currentQ]===4}" @click="answer(4)"><span class="ubti-scale-dot"></span><span class="ubti-scale-slabel">非常认同右侧</span></button>
               </div>
             </div>
-            <div class="ubti-back-row">
-              <button class="ubti-btn-back" :disabled="currentQ===0" @click="goBack">← 上一题</button>
-              <button class="ubti-btn-skip" @click="skipQ">跳过 ⏭</button>
-            </div>
+            <div class="ubti-back-row"><button class="ubti-btn-back" :disabled="currentQ===0" @click="goBack">← 上一题</button><button class="ubti-btn-skip" @click="skipQ">跳过 ⏭</button></div>
           </div>
         </div>
-
         <div v-if="quizScreen==='results' && resultType" class="ubti-results-wrap">
-          <div class="ubti-results-hero">
-            <div class="character-wrap" v-html="resultSvg"></div>
-            <div class="ubti-type-code">{{ resultCode }}</div>
-            <div class="ubti-type-label">{{ resultType.label }}</div>
-            <div class="ubti-type-tagline">{{ resultType.tagline }}</div>
-          </div>
-          <div class="ubti-results-card">
-            <h3>📖 适配画像</h3>
-            <div class="ubti-profile-text">{{ resultType.profile }}</div>
-            <div class="ubti-summary-banner"><p>✨ {{ resultType.summary }}</p></div>
-          </div>
-          <div class="ubti-results-card">
-            <h3>🎯 择校时最该关注的</h3>
-            <div class="ubti-key-factors">
-              <div v-for="(f,i) in resultType.factors" :key="i" class="ubti-key-factor"><span class="kf-emoji">{{ ['🔬','📚','🏛','🤝'][i] }}</span>{{ f }}</div>
-            </div>
-          </div>
-          <div class="ubti-results-card">
-            <h3>📊 维度倾向</h3>
-            <div v-for="dim in dimOrder" :key="dim" class="ubti-dim-row">
-              <div class="ubti-dim-label l">{{ dimMeta[dim].labelA }}</div>
-              <div class="ubti-dim-bar-wrap">
-                <div class="ubti-dim-bar-l" :style="{width: dimData[dim].pA+'%'}">{{ dimData[dim].pA >= 18 ? dimData[dim].a : '' }}</div>
-                <div class="ubti-dim-bar-r" :style="{width: dimData[dim].pB+'%'}">{{ dimData[dim].pB >= 18 ? dimData[dim].b : '' }}</div>
-              </div>
-              <div class="ubti-dim-label r">{{ dimMeta[dim].labelB }}</div>
-              <div class="ubti-dim-verdict">{{ dimData[dim].verdict }}</div>
-            </div>
-          </div>
-          <div class="ubti-results-card">
-            <h3>🔑 四个字母的含义</h3>
-            <div v-for="(dim,i) in dimOrder" :key="dim" class="ubti-legend-item">
-              <strong>{{ dimMeta[dim].name }} → {{ resultParts[i] }} · {{ resultParts[i]===dimMeta[dim].chipA ? dimMeta[dim].labelA : dimMeta[dim].labelB }}</strong><br>
-              {{ resultParts[i]===dimMeta[dim].chipA ? dimMeta[dim].descA : dimMeta[dim].descB }}
-            </div>
-          </div>
-          <div style="text-align:center;margin-top:20px">
-            <button class="btn btn-outline" @click="retakeTest">🔄 重新测试</button>
-          </div>
+          <div class="ubti-results-hero"><div v-html="resultSvg"></div><div class="ubti-type-code">{{ resultCode }}</div><div class="ubti-type-label">{{ resultType.label }}</div><div class="ubti-type-tagline">{{ resultType.tagline }}</div></div>
+          <div class="ubti-results-card"><h3>📖 适配画像</h3><div class="ubti-profile-text">{{ resultType.profile }}</div><div class="ubti-summary-banner"><p>✨ {{ resultType.summary }}</p></div></div>
+          <div class="ubti-results-card"><h3>🎯 择校时最该关注的</h3><div class="ubti-key-factors"><div v-for="(f,i) in resultType.factors" :key="i" class="ubti-key-factor"><span class="kf-emoji">{{ ['🔬','📚','🏛','🤝'][i] }}</span>{{ f }}</div></div></div>
+          <div class="ubti-results-card"><h3>📊 维度倾向</h3><div v-for="dim in dimOrder" :key="dim" class="ubti-dim-row"><div class="ubti-dim-label l">{{ dimMeta[dim].labelA }}</div><div class="ubti-dim-bar-wrap"><div class="ubti-dim-bar-l" :style="{width: dimData[dim].pA+'%'}">{{ dimData[dim].pA>=18?dimData[dim].a:'' }}</div><div class="ubti-dim-bar-r" :style="{width: dimData[dim].pB+'%'}">{{ dimData[dim].pB>=18?dimData[dim].b:'' }}</div></div><div class="ubti-dim-label r">{{ dimMeta[dim].labelB }}</div><div class="ubti-dim-verdict">{{ dimData[dim].verdict }}</div></div></div>
+          <div class="ubti-results-card"><h3>🔑 四个字母的含义</h3><div v-for="(dim,i) in dimOrder" :key="dim" class="ubti-legend-item"><strong>{{ dimMeta[dim].name }} → {{ resultParts[i] }} · {{ resultParts[i]===dimMeta[dim].chipA?dimMeta[dim].labelA:dimMeta[dim].labelB }}</strong><br>{{ resultParts[i]===dimMeta[dim].chipA?dimMeta[dim].descA:dimMeta[dim].descB }}</div></div>
+          <div style="text-align:center;margin-top:20px"><button class="btn btn-outline" @click="retakeTest">🔄 重新测试</button></div>
         </div>
       </div>
     </section>
 
-    <!-- ===== 快速导航 ===== -->
-    <section class="section reveal reveal-up">
-      <div class="container">
-        <h2 class="section-title">探索更多</h2>
-        <p class="section-subtitle">这里还有一些你可能感兴趣的内容</p>
-        <div class="nav-grid">
-          <a href="#/about" class="card reveal reveal-up reveal-d2"><div class="nav-grid-icon">👤</div><div class="nav-grid-title">关于我</div><div class="nav-grid-desc">了解我的背景、技能和做事方式</div></a>
-          <a href="#/projects" class="card reveal reveal-up reveal-d3"><div class="nav-grid-icon">💼</div><div class="nav-grid-title">项目作品</div><div class="nav-grid-desc">看看我做过的东西和技术栈</div></a>
-          <a href="#/blog" class="card reveal reveal-up reveal-d4"><div class="nav-grid-icon">✍️</div><div class="nav-grid-title">博客</div><div class="nav-grid-desc">阅读我的技术文章和思考随笔</div></a>
-          <a href="#/products" class="card reveal reveal-up reveal-d5"><div class="nav-grid-icon">🚀</div><div class="nav-grid-title">已上线产品</div><div class="nav-grid-desc">那些真正在运行的产品和服务</div></a>
-        </div>
-      </div>
-    </section>
-  </div>
-  `,
+    <section class="section reveal reveal-up"><div class="container"><h2 class="section-title">探索更多</h2><p class="section-subtitle">这里还有一些你可能感兴趣的内容</p><div class="nav-grid"><a href="#/about" class="card reveal reveal-up reveal-d2"><div class="nav-grid-icon">👤</div><div class="nav-grid-title">关于我</div><div class="nav-grid-desc">了解我的背景、技能和做事方式</div></a><a href="#/projects" class="card reveal reveal-up reveal-d3"><div class="nav-grid-icon">💼</div><div class="nav-grid-title">项目作品</div><div class="nav-grid-desc">看看我做过的东西和技术栈</div></a><a href="#/blog" class="card reveal reveal-up reveal-d4"><div class="nav-grid-icon">✍️</div><div class="nav-grid-title">博客</div><div class="nav-grid-desc">阅读我的技术文章和思考随笔</div></a><a href="#/products" class="card reveal reveal-up reveal-d5"><div class="nav-grid-icon">🚀</div><div class="nav-grid-title">已上线产品</div><div class="nav-grid-desc">那些真正在运行的产品和服务</div></a></div></div></section>
+  </div>`,
   data() {
-    return {
-      quizScreen: 'intro',
-      currentQ: 0,
-      shuffled: [],
-      choices: [],
-      dimMeta,
-      dimOrder: ['U','B','T','I']
-    }
+    return { quizScreen: 'intro', currentQ: 0, shuffled: [], choices: [], dimMeta, dimOrder: ['U','B','T','I'] }
   },
   computed: {
     progressPct() { return Math.round((this.currentQ / this.shuffled.length) * 100); },
@@ -329,49 +340,16 @@ export const HomePage = {
     resultType() { return TYPE_CONFIG[this.resultCode] || null; },
     resultSvg() { return this.resultType ? makeCharacter(this.resultType.character) : ''; },
     resultParts() { return this.resultCode.split('-'); },
-    dimData() {
-      const scores = this.calcScores(); const data = {};
-      this.dimOrder.forEach(dim => {
-        const a = scores[dim].A, b = scores[dim].B, tot = a + b;
-        const pA = tot ? Math.round(a/tot*100) : 50, pB = 100 - pA;
-        const dm = dimMeta[dim];
-        data[dim] = { a, b, pA, pB, verdict: pA >= 55 ? '偏 ' + dm.labelA : (pB >= 55 ? '偏 ' + dm.labelB : '倾向平衡') };
-      });
-      return data;
-    }
+    dimData() { const s=this.calcScores(),d={}; this.dimOrder.forEach(dm=>{const a=s[dm].A,b=s[dm].B,t=a+b,pA=t?Math.round(a/t*100):50; d[dm]={a,b,pA,pB:100-pA,verdict:pA>=55?'偏 '+dimMeta[dm].labelA:(100-pA>=55?'偏 '+dimMeta[dm].labelB:'倾向平衡')}}); return d; }
   },
   methods: {
-    startQuiz() {
-      this.currentQ = 0;
-      this.shuffled = shuffleArr(QUESTIONS).map(q => ({...q, flipped: Math.random() > .5}));
-      this.choices = new Array(this.shuffled.length).fill(null);
-      this.quizScreen = 'quiz';
-      window.scrollTo({top: document.getElementById('ubti-area')?.offsetTop - 80 || 0, behavior: 'smooth'});
-    },
-    answer(choice) {
-      this.choices[this.currentQ] = choice; this.currentQ++;
-      if (this.currentQ >= this.shuffled.length) { this.quizScreen = 'results'; window.scrollTo({top: 0, behavior: 'smooth'}); }
-    },
-    goBack() { if (this.currentQ > 0) this.currentQ--; },
-    skipQ() {
-      if (this.choices[this.currentQ] === null) this.choices[this.currentQ] = 2;
-      this.currentQ++;
-      if (this.currentQ >= this.shuffled.length) { this.quizScreen = 'results'; window.scrollTo({top: 0, behavior: 'smooth'}); }
-    },
-    retakeTest() { this.quizScreen = 'intro'; window.scrollTo({top: document.getElementById('ubti-area')?.offsetTop - 80 || 0, behavior: 'smooth'}); },
-    calcScores() {
-      const s = {U:{A:0,B:0},B:{A:0,B:0},T:{A:0,B:0},I:{A:0,B:0}};
-      for (let i = 0; i < this.shuffled.length; i++) {
-        const c = this.choices[i]; if (c === null || c === undefined) continue;
-        const q = this.shuffled[i], dim = q.dim;
-        const toA = q.flipped ? "B" : "A", toB = q.flipped ? "A" : "B";
-        if (c === 0) s[dim][toA] += 2; else if (c === 1) s[dim][toA] += 1;
-        else if (c === 3) s[dim][toB] += 1; else if (c === 4) s[dim][toB] += 2;
-      }
-      return s;
-    },
-    calcCode(scores) {
-      return (scores.U.A >= scores.U.B ? "R" : "V") + "-" + (scores.B.A >= scores.B.B ? "D" : "W") + "-" + (scores.T.A >= scores.T.B ? "A" : "C") + "-" + (scores.I.A >= scores.I.B ? "S" : "F");
-    }
+    ghibliAvatar,
+    startQuiz() { this.currentQ=0; this.shuffled=shuffleArr(QUESTIONS).map(q=>({...q,flipped:Math.random()>.5})); this.choices=new Array(this.shuffled.length).fill(null); this.quizScreen='quiz'; window.scrollTo({top:document.getElementById('ubti-area')?.offsetTop-80||0,behavior:'smooth'}); },
+    answer(c) { this.choices[this.currentQ]=c; this.currentQ++; if(this.currentQ>=this.shuffled.length){this.quizScreen='results';window.scrollTo({top:0,behavior:'smooth'});} },
+    goBack() { if(this.currentQ>0)this.currentQ--; },
+    skipQ() { if(this.choices[this.currentQ]===null)this.choices[this.currentQ]=2; this.currentQ++; if(this.currentQ>=this.shuffled.length){this.quizScreen='results';window.scrollTo({top:0,behavior:'smooth'});} },
+    retakeTest() { this.quizScreen='intro'; window.scrollTo({top:document.getElementById('ubti-area')?.offsetTop-80||0,behavior:'smooth'}); },
+    calcScores(){const s={U:{A:0,B:0},B:{A:0,B:0},T:{A:0,B:0},I:{A:0,B:0}};for(let i=0;i<this.shuffled.length;i++){const c=this.choices[i];if(c===null||c===undefined)continue;const q=this.shuffled[i],dm=q.dim,toA=q.flipped?"B":"A",toB=q.flipped?"A":"B";if(c===0)s[dm][toA]+=2;else if(c===1)s[dm][toA]+=1;else if(c===3)s[dm][toB]+=1;else if(c===4)s[dm][toB]+=2;}return s;},
+    calcCode(s){return(s.U.A>=s.U.B?"R":"V")+"-"+(s.B.A>=s.B.B?"D":"W")+"-"+(s.T.A>=s.T.B?"A":"C")+"-"+(s.I.A>=s.I.B?"S":"F");}
   }
 };
